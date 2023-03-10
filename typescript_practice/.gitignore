@@ -1,0 +1,7 @@
+# packages
+node_modules/
+package-lock.json
+
+# local files
+.DS_Store
+*.log
