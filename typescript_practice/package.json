@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode=production",
-    "start": "webpack-cli serve --mode development"
+    "start": "webpack-cli serve --mode development",
+    "lint": "eslint --fix 'src/**/*.{js,ts}'",
+    "lint-fix": "eslint --fix './src/**/*.{js,ts}' && prettier --write './src/**/*.{js,ts}'"
   },
   "author": "",
   "license": "ISC",
