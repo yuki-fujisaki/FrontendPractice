@@ -8,6 +8,9 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "workspaces": [
+    "/next-app-tutorial/*"
+  ],
   "dependencies": {
     "@types/node": "18.15.3",
     "@types/react": "18.0.28",
