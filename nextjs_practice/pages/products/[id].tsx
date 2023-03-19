@@ -3,30 +3,30 @@ import { useRouter } from "next/router";
 import styles from "../../styles/Home.module.css";
 
 // SSGの場合
-export async function getStaticProps(params: any) {
-  const req = await fetch(`http://localhost:3000/${params.id}.json`);
-  const data = await req.json();
-  return {
-    props: {
-      product: data,
-    },
-  };
-}
+// export async function getStaticProps(params: any) {
+//   const req = await fetch(`http://localhost:3000/${params.id}.json`);
+//   const data = await req.json();
+//   return {
+//     props: {
+//       product: data,
+//     },
+//   };
+// }
 
-export async function getStaticPaths() {
-  const req = await fetch(`http://localhost:3000/products.json`);
-  const data = await req.json();
-  const paths = data.map((product: any) => {
-    return {
-      params: {
-        id: product,
-      },
-    };
-  });
-  return { paths, fallback: false };
-}
+// export async function getStaticPaths() {
+//   const req = await fetch(`http://localhost:3000/products.json`);
+//   const data = await req.json();
+//   const paths = data.map((product: any) => {
+//     return {
+//       params: {
+//         id: product,
+//       },
+//     };
+//   });
+//   return { paths, fallback: false };
+// }
 
-export async function getStaticProps(params: any) {
+export async function getServerSideProps(params: any) {
   const req = await fetch(`http://localhost:3000/${params.id}.json`);
   const data = await req.json();
   return {
