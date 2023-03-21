@@ -37,4 +37,6 @@
 
 // 「07.ジェネリック型とポリモーフィズム」のサンプルコード
 import genericsSample from './generics/basic'
+import advancedSample from './generics/advanced'
 genericsSample()
+advancedSample()
