@@ -24,7 +24,23 @@
 // console.log('Function parameters sample 5: Total price:', sum)
 
 // 「05.オブジェクトの型定義」のサンプルコード
-import objectSample from './object/object'
-import typeAliasSample from './object/alias'
-objectSample()
-typeAliasSample()
+// import objectSample from './object/object'
+// import typeAliasSample from './object/alias'
+// objectSample()
+// typeAliasSample()
+
+// 「06.配列とタプルの型定義」のサンプルコード
+// import arraySample from './array/array'
+// import tupleSample from './array/tuple'
+// arraySample()
+// tupleSample()
+
+// 「07.ジェネリック型とポリモーフィズム」のサンプルコード
+// import genericsSample from './generics/basic'
+// import advancedSample from './generics/advanced'
+// genericsSample()
+// advancedSample()
+
+// 「10.非同期処理の型定義」のサンプルコード
+import callbackSample from './asynchronous/callback'
+callbackSample()
