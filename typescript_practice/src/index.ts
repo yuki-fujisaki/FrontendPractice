@@ -43,4 +43,6 @@
 
 // 「10.非同期処理の型定義」のサンプルコード
 import callbackSample from './asynchronous/callback'
+import promiseSample from './asynchronous/promise'
 callbackSample()
+promiseSample()
