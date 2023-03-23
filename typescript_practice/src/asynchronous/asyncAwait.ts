@@ -1,3 +1,4 @@
+// 見てほしいファイル
 export default async function asyncAwaitSample() {
   const url = 'https://api.github.com/users/deatiger'
 

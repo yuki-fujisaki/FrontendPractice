@@ -1,3 +1,4 @@
+// 見てほしいファイル
 export default function callbackSample() {
   const url = 'https://api.github.com/users/deatiger'
 
