@@ -1,35 +1,29 @@
-import { Button, Label, TextInput } from "flowbite-react";
-import { ChangeEvent, SyntheticEvent, useState } from "react";
+import { Button, Label, TextInput } from 'flowbite-react'
+import { ChangeEvent, SyntheticEvent, useState } from 'react'
+import { signIn } from 'next-auth/react'
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+    email: '',
+    password: '',
+  })
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value, name } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+    const { value, name } = e.target
+    setFormData({ ...formData, [name]: value })
+  }
 
   const handleSubmit = async (e: SyntheticEvent) => {
-    e.preventDefault();
-    const res = await fetch("/api/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    e.preventDefault()
 
-    if (res.status === 200) {
-      const user = await res.json();
-      console.log(user);
-    } else {
-      console.log(`${res.status} something went wrong`);
-    }
-    // alert(JSON.stringify(formData))
-  };
+    const result = await signIn('credentials', {
+      redirect: false,
+      email: formData.email,
+      password: formData.password,
+    })
+
+    console.log('result', result)
+  }
 
   return (
     <div className="w-60">
@@ -64,7 +58,7 @@ const LoginForm = () => {
         <Button type="submit">Login</Button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default LoginForm;
+export default LoginForm
