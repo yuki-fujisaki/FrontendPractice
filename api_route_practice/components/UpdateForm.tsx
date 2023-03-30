@@ -1,44 +1,44 @@
-import { Button, Label, TextInput } from "flowbite-react";
-import { ChangeEvent, FC, SyntheticEvent, useState } from "react";
+import { Button, Label, TextInput } from 'flowbite-react'
+import { ChangeEvent, FC, SyntheticEvent, useState } from 'react'
 
 interface UserData {
-  id: number;
-  email: string;
-  name: string;
+  id: number
+  email: string
+  name: string | null
 }
 
 interface Props {
-  user: UserData;
+  user: UserData
 }
 
 const UpdateForm: FC<Props> = ({ user }) => {
   const [formData, setFormData] = useState({
     email: user.email,
     name: user.name,
-  });
+  })
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value, name } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+    const { value, name } = e.target
+    setFormData({ ...formData, [name]: value })
+  }
 
   const handleSubmit = async (e: SyntheticEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     const res = await fetch(`/api/users/${user.id}`, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(formData),
-    });
+    })
 
     if (res.status === 200) {
-      const user = await res.json();
-      console.log(user);
+      const user = await res.json()
+      console.log(user)
     } else {
-      console.log(`${res.status} something went wrong`);
+      console.log(`${res.status} something went wrong`)
     }
-  };
+  }
 
   return (
     <div className="w-60">
@@ -64,7 +64,7 @@ const UpdateForm: FC<Props> = ({ user }) => {
             id="username"
             type="text"
             name="name"
-            value={formData.name}
+            value={formData.name || ''}
             onChange={handleChange}
             required={true}
           />
@@ -72,7 +72,7 @@ const UpdateForm: FC<Props> = ({ user }) => {
         <Button type="submit">Update User</Button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default UpdateForm;
+export default UpdateForm
