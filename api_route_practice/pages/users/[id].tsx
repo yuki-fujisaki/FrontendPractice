@@ -1,39 +1,38 @@
-import { useEffect, useState } from "react";
-import Layout from "../../components/Layout";
-import { User } from "@prisma/client";
-import UserCard from "../../components/UserCard";
-import RegisterForm from "../../components/RegisterForm";
-import { useRouter } from "next/router";
+import { useEffect, useState } from 'react'
+import Layout from '../../components/Layout'
+import { User } from '@prisma/client'
+import UserCard from '../../components/UserCard'
+import { useRouter } from 'next/router'
+import UpdateForm from '../../components/UpdateForm'
 
 export default function UserDetails() {
-  const [user, setUser] = useState<Pick<User, "id" | "email" | "name">>();
+  const [user, setUser] = useState<Pick<User, 'id' | 'email' | 'name'>>()
 
-  const router = useRouter();
-  const { id } = router.query;
+  const router = useRouter()
+  const { id } = router.query
 
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       if (router.isReady) {
-        const res = await fetch(`/api/users/${id}`);
-        const user = await res.json();
-        setUser(user);
-        console.log(user);
+        const res = await fetch(`/api/users/${id}`)
+        const user = await res.json()
+        setUser(user)
+        console.log(user)
       }
-    })();
-  }, [id]);
+    })()
+  }, [id])
 
   return (
     <Layout>
       <div className="flex flex-col justify-center items-center">
-        <h2 className="text-4xl font-black font-sans p-4 mt-6">
-          Register Form
-        </h2>
-        <RegisterForm />
+        <h2 className="text-4xl font-black font-sans p-4 mt-6">Update Form</h2>
+        {user && <UpdateForm user={user} />}
+
         <h2 className="text-4xl font-black font-sans p-4 mt-6">User Details</h2>
         <div className="flex flex-wrap w-full justify-center items-center gap-3">
           {user && <UserCard user={user} isDetailds={true} />}
         </div>
       </div>
     </Layout>
-  );
+  )
 }
