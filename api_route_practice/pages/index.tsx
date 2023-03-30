@@ -25,7 +25,10 @@ export default function Home() {
         <RegisterForm />
         <h2 className="text-4xl font-black font-sans p-4 mt-6">User Lists</h2>
         <div className="flex flex-wrap w-full justify-center items-center gap-3">
-          {users && users.map((user) => <UserCard key={user.id} user={user} />)}
+          {users &&
+            users.map((user) => (
+              <UserCard key={user.id} user={user} isDetailds={false} />
+            ))}
         </div>
       </div>
     </Layout>

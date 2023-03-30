@@ -31,7 +31,7 @@ export default function UserDetails() {
         <RegisterForm />
         <h2 className="text-4xl font-black font-sans p-4 mt-6">User Details</h2>
         <div className="flex flex-wrap w-full justify-center items-center gap-3">
-          {user && <UserCard user={user} />}
+          {user && <UserCard user={user} isDetailds={true} />}
         </div>
       </div>
     </Layout>
