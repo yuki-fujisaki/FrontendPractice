@@ -1,30 +1,31 @@
-import Layout from '../components/Layout'
-import LoginForm from '../components/LoginForm'
-import { useSession } from 'next-auth/react'
-import { getToken, JWT } from 'next-auth/jwt'
-import { GetServerSideProps } from 'next'
+import Layout from "../components/Layout";
+import LoginForm from "../components/LoginForm";
+import { useSession, signOut } from "next-auth/react";
+import { getToken, JWT } from "next-auth/jwt";
+import { GetServerSideProps } from "next";
+import { Button } from "flowbite-react";
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const token = await getToken({ req, secret: 'secretKey' })
+  const token = await getToken({ req, secret: "secretKey" });
 
   return {
     props: {
       token,
     },
-  }
-}
+  };
+};
 
 interface Props {
-  token: JWT | null
+  token: JWT | null;
 }
 
 export default function LoginPage({ token }: Props) {
-  const { data: session, status } = useSession()
+  const { data: session, status } = useSession();
 
   // console.log(session)
   // console.log(status)
 
-  console.log(token)
+  console.log(token);
 
   return (
     <Layout>
@@ -33,11 +34,16 @@ export default function LoginPage({ token }: Props) {
         <LoginForm />
         <h2 className="text-4xl font-black font-sans p-4 mt-6">User</h2>
         {session && (
-          <div>
-            {session.user?.name}: {session.user?.email}
-          </div>
+          <>
+            <div>
+              {session.user?.name}: {session.user?.email}
+            </div>
+            <Button className="w-60 mt-3" onClick={() => signOut()}>
+              Logout
+            </Button>
+          </>
         )}
       </div>
     </Layout>
-  )
+  );
 }
