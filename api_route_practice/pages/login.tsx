@@ -1,12 +1,30 @@
-import Layout from "../components/Layout";
-import LoginForm from "../components/LoginForm";
-import { useSession } from "next-auth/react";
+import Layout from '../components/Layout'
+import LoginForm from '../components/LoginForm'
+import { useSession } from 'next-auth/react'
+import { getToken, JWT } from 'next-auth/jwt'
+import { GetServerSideProps } from 'next'
 
-export default function LoginPage() {
-  const { data: session, status } = useSession();
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const token = await getToken({ req, secret: 'secretKey' })
 
-  console.log(session);
-  console.log(status);
+  return {
+    props: {
+      token,
+    },
+  }
+}
+
+interface Props {
+  token: JWT | null
+}
+
+export default function LoginPage({ token }: Props) {
+  const { data: session, status } = useSession()
+
+  // console.log(session)
+  // console.log(status)
+
+  console.log(token)
 
   return (
     <Layout>
@@ -21,5 +39,5 @@ export default function LoginPage() {
         )}
       </div>
     </Layout>
-  );
+  )
 }
