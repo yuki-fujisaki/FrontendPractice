@@ -1,22 +1,36 @@
-import { Button, Label, TextInput } from "flowbite-react";
-import { ChangeEvent, SyntheticEvent, useState } from "react";
+import { Button, Label, TextInput } from 'flowbite-react'
+import { ChangeEvent, SyntheticEvent, useState } from 'react'
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    name: "",
-  });
+    email: '',
+    password: '',
+    name: '',
+  })
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value, name } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+    const { value, name } = e.target
+    setFormData({ ...formData, [name]: value })
+  }
 
-  const handleSubmit = (e: SyntheticEvent) => {
-    e.preventDefault();
-    alert(JSON.stringify(formData));
-  };
+  const handleSubmit = async (e: SyntheticEvent) => {
+    e.preventDefault()
+    const res = await fetch('/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+
+    if (res.status === 200) {
+      const user = await res.json()
+      console.log(user)
+    } else {
+      console.log(`${res.status} something went wrong`)
+    }
+    // alert(JSON.stringify(formData))
+  }
 
   return (
     <div className="w-60">
@@ -63,7 +77,7 @@ const RegisterForm = () => {
         <Button type="submit">Register</Button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default RegisterForm;
+export default RegisterForm
