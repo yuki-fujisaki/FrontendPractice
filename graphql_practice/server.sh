@@ -7,3 +7,5 @@ npx postgraphile \
   --watch \
   --owner-connection postgres:///learn_dev \
   --default-role learn_anonymous \
+  --jwt-token-identifier learn.jwt \
+  --jwt-secret secret_for_jwts
