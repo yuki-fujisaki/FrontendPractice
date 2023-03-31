@@ -4,3 +4,4 @@ npx postgraphile \
   --append-plugins @graphile-contrib/pg-simplify-inflector \
   --enhance-graphiql \
   --allow-explain \
+  --watch \
