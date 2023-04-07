@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@graphile-contrib/pg-simplify-inflector": "^6.1.0",
+    "db-migrate": "^0.11.13",
+    "db-migrate-pg": "^1.2.2",
+    "postgraphile": "^4.13.0"
+  }
+}
